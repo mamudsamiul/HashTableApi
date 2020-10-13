@@ -47,4 +47,25 @@ public class HashTableApiTest {
 		System.out.println(myLinkedHashMap);
 		Assert.assertEquals(3, frequency);
 	}
+
+	@Test(expected = Exception.class)
+	public void givenWordShouldRemoveFromTheMap() {
+		System.out.println("\nThis is the test to find and remove a word from the paragraph.");
+		String sentence = "Paranoids are not paranoid because they are paranoid but "
+				+ "because they keep putting themselves deliberately into " + "paranoid avoidable situations";
+		MyLinkedHashMap<String, Integer> myMap = new MyLinkedHashMap<>();
+		String[] words = sentence.toLowerCase().split(" ");
+		for (String word : words) {
+			Integer value = myMap.get(word);
+			if (value == null)
+				value = 1;
+			else
+				value = value + 1;
+			myMap.add(word, value);
+		}
+
+		MyMapNode<String, Integer> myNode = (MyMapNode<String, Integer>) myMap.remove("avoidable");
+		System.out.println(myMap);
+		Assert.assertEquals(myNode.getNext().getKey(), null);
+	}
 }
