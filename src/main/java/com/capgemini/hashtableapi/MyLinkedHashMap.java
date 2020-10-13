@@ -50,6 +50,13 @@ public class MyLinkedHashMap<K, V> {
 
 	}
 
+	public MyMapNode<K, V> remove(K key) {
+		int index = this.getBucketIndex(key);
+		MyLinkedList<K> myLinkedList = this.myBucketArray.get(index);
+		MyMapNode<K, V> myMapNode = (MyMapNode<K, V>) myLinkedList.popValue(key);
+		return (myMapNode == null) ? null : myMapNode;
+	}
+
 	@Override
 	public String toString() {
 		return "MyLinkedHashMap List{ " + myBucketArray + " }";
