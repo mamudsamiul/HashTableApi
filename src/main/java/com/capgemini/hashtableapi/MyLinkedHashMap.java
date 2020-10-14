@@ -49,6 +49,9 @@ public class MyLinkedHashMap<K, V> {
 		}
 
 	}
+	public int length() {
+		return myBucketArray.size();
+	}
 
 	public MyMapNode<K, V> remove(K key) {
 		int index = this.getBucketIndex(key);

@@ -48,7 +48,7 @@ public class HashTableApiTest {
 		Assert.assertEquals(3, frequency);
 	}
 
-	@Test(expected = Exception.class)
+	@Test
 	public void givenWordShouldRemoveFromTheMap() {
 		System.out.println("\nThis is the test to find and remove a word from the paragraph.");
 		String sentence = "Paranoids are not paranoid because they are paranoid but "
@@ -65,7 +65,17 @@ public class HashTableApiTest {
 		}
 
 		MyMapNode<String, Integer> myNode = (MyMapNode<String, Integer>) myMap.remove("avoidable");
+		boolean temp = false;
+		for (String word : words) {
+			Integer value = myMap.get(word);
+			if (value == null) {
+				temp=true;
+				break;
+			}
+			else
+				temp=false;
+		}
 		System.out.println(myMap);
-		Assert.assertEquals(myNode.getNext().getKey(), null);
+		Assert.assertEquals(true, temp);;
 	}
 }
